@@ -1,9 +1,5 @@
-import { BrowserRouter as Router, Routes, Route, Navigate, createRoutesFromElements, createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { UNSAFE_DataRouterContext, UNSAFE_DataRouterStateContext, UNSAFE_NavigationContext, UNSAFE_RouteContext, UNSAFE_useScrollRestoration } from 'react-router-dom';
-// Enable React Router v7 future flags
-UNSAFE_DataRouterContext.__v7_startTransition = true;
-UNSAFE_DataRouterStateContext.__v7_relativeSplatPath = true;
-import { ConfigProvider, App as AntApp } from 'antd';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { ConfigProvider } from 'antd';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Navbar from './components/Navbar';
@@ -52,10 +48,9 @@ function App() {
       <AuthProvider>
         <CartProvider>
           <Router>
-            <AntApp>
-              <div className="min-h-screen bg-white">
-                <Navbar />
-                <Routes>
+            <div className="min-h-screen bg-white">
+              <Navbar />
+              <Routes>
                 {/* User Routes */}
                 <Route path="/" element={<ServiceSelection />} />
                 <Route path="/slot-selection" element={<SlotSelection />} />
@@ -84,9 +79,8 @@ function App() {
 
                 {/* Fallback */}
                 <Route path="*" element={<Navigate to="/" />} />
-                </Routes>
-              </div>
-            </AntApp>
+              </Routes>
+            </div>
           </Router>
         </CartProvider>
       </AuthProvider>
