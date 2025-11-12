@@ -14,14 +14,12 @@ const CustomerDetails = () => {
 
   const { date, time } = location.state || {};
 
-  // Use useEffect to handle navigation instead of during render
   useEffect(() => {
     if (!date || !time || cart.length === 0) {
       navigate('/');
     }
   }, [date, time, cart.length, navigate]);
 
-  // Show loading while redirecting
   if (!date || !time || cart.length === 0) {
     return null;
   }
@@ -50,9 +48,7 @@ const CustomerDetails = () => {
         message.success('Booking confirmed successfully!');
         clearCart();
         
-        // Small delay to ensure state is ready
         setTimeout(() => {
-          // Navigate to confirmation page with booking data
           navigate('/booking-summary', { 
             state: { booking: response.data }
           });

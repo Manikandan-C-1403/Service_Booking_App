@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, DatePicker, TimePicker, Button, List, Alert, message, Breadcrumb } from 'antd';
 import { CalendarOutlined, ClockCircleOutlined, ArrowRightOutlined, ArrowLeftOutlined, HomeOutlined, ShoppingOutlined } from '@ant-design/icons';
@@ -34,7 +34,7 @@ const SlotSelection = () => {
         time: selectedTime.format('HH:mm')
       });
 
-      setUnavailableServices(response.data.unavailableServices);
+      setUnavailableServices(response.data.unavailableServices || []);
 
       if (response.data.available) {
         message.success('All services are available!');

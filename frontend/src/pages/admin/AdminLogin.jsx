@@ -72,11 +72,6 @@ const AdminLogin = () => {
             </Button>
           </Form.Item>
         </Form>
-
-        <div className="text-center text-sm text-gray-700">
-          <p>Demo: Create an admin account using the API</p>
-          <p className="mt-1">POST /api/auth/register</p>
-        </div>
       </Card>
     </div>
   );

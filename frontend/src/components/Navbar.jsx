@@ -33,12 +33,6 @@ const Navbar = () => {
                 BookIt
               </div>
             </Link>
-            {isAdminRoute && (
-              <div className="hidden sm:flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full">
-                <DashboardOutlined className="text-blue-600" />
-                <span className="text-sm font-semibold text-gray-700">Admin Panel</span>
-              </div>
-            )}
           </div>
 
           {/* Desktop Menu */}

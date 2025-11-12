@@ -107,19 +107,33 @@ export const checkAvailability = async (req, res) => {
       return false;
     });
 
+    if (unavailableServices.length > 0) {
+      return res.json({
+        available: false,
+        unavailableServices: unavailableServices.map(s => s._id),
+        message: "Some services are not available at this time"
+      });
+    }
+
     const existingBookings = await Booking.find({
       bookingDate: requestedDate,
       bookingTime: time,
       status: { $ne: 'cancelled' }
     });
 
+    if (existingBookings.length > 0) {
+      return res.json({
+        available: false,
+        message: "This time slot is already booked"
+      });
+    }
+
     res.json({
-      available: unavailableServices.length === 0,
-      unavailableServices: unavailableServices.map(s => s._id),
-      message: unavailableServices.length > 0 
-        ? 'Some services are not available at this time' 
-        : 'All services are available'
+      available: true,
+      message: "All services are available"
     });
+
+    
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
